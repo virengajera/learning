@@ -47,7 +47,7 @@ type User = {
 }
 
 let virenUser: User = {
-    _id: 123,
+    _id: 123,               // you cannot assign value to readonly property
     name: "Viren",
     age: 23
 }

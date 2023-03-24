@@ -270,7 +270,7 @@ This can only happen when the **size of the data buffer that you want to write o
 ## **Readable Stream**
 -------------------------
 
-In Readable Stream when you want to empty buffer **stream.on('data',(chunk)=>{})** is used. Default **highWaterMark** value is 64 KB.
+In Readable Stream when you want to empty buffer **stream.on('data',(chunk)=>{})** is used. Default **highWaterMark** value is 64 KB. Never put "async" in-front of callback. Refer broken-promises talk on youtube.
 
 
 
