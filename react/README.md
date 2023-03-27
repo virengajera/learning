@@ -1,3 +1,24 @@
+# Table of Contents
+
+- [Getting Started](#getting-started)
+- [Classname](#classname)
+- [Components](#components)
+- [Passing Data b/w components](#passing-data-bw-components)
+    - [Passing variable](#passing-variablecompanyname-from-parent-component--app--to-child-component--header)
+
+    - [Passing Array](#passing-arraylinks-from-parent-component-nav-to-child-component-link)
+- [Events](#events-in-react)
+- [useState](#usestate---hooks)
+- [useEffect](#useeffect---hooks)
+- [Routing](#routing)
+- [Prop Types](#proptypes)
+- [useRef](#useref)
+- [Context Api and Hooks](#context-api-and-hooks)
+- [Custom Hooks](#custom-hooks)
+- [Styled Component](#styled-component)
+- [Production Build](#production-build)
+
+
 # **React**
 
 
@@ -228,7 +249,9 @@ History Values
 
 ## **useEffect - Hooks**
 
-Once Initial rendering is done then you want something to do like API calls, Getting location, access local storage, update state.
+Once Initial rendering is done then you want something to do like API calls, Getting location, access local storage, update state. 
+
+ e.g. useEffect(()=>{},[list]) when you are done you will store data in list and once list get update useeffect will be called to set loader flag to false.
 
 
 ```
@@ -402,6 +425,85 @@ function component_name(){
   const  [fav,setfav] = useFav()  // currently fav will be to default value i.e. {}
 
 }
+```
+
+## **Optimization, Code-splitting and Lazy Loading**
+
+```
+import {lazy,Suspense} from 'react'
+
+function main_component(){
+
+  const FilmComponent = import('../Films/Films,js')
+
+  return(
+    <Routes>
+
+        <Route path="/film">
+
+          <Suspense>
+                <FilmComponent/>
+          </Suspense>
+
+        </Route>
+
+    </Routes>
+  )
+}
+```
+## **Custom Hooks**
+--------------
+
+## **Styled Component**
+
+- `npm install styled-components`
+- Create name.js file
+```
+name.js
+-----------
+import styled from 'styled-components'
+
+const Title = styled.h1`
+  color : blue;
+  `;
+export {Title}
+```
+
+```
+In component file import that
+-----------------------------
+import Title from '././fasdf'
+
+function component name(){
+
+  return(
+
+    <Title> First Title </Title>
+
+  )
+}
+
+```
+
+Applying Global css style (styled component) 
+
+Create a styled component and import it in component file
+```
+import GlobalStyle from './//'
+
+function Paren_component(){
+
+  return(
+
+    <GlobalStyle/>
+
+    // global style will be applicable to both child components
+    <ChildComponent1/>
+    <ChildComponent2/>  
+
+  )
+}
+
 ```
 
 ## **Production Build**
