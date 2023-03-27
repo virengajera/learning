@@ -1,0 +1,11 @@
+.Nav{
+    color: aliceblue;
+    flex: 1;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+

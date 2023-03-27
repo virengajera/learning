@@ -1,0 +1,40 @@
+.SearchBar{
+    background-color: rgb(59, 52, 40);
+    padding: 1rem 0;
+
+}
+
+label{
+    color: aliceblue;
+}
+
+input {
+    height: 1.5rem;
+    width: 15rem;
+    border-radius: 5px;
+}
+
+button{
+    margin: 0 2rem;
+    height: 1.7rem;
+    min-width: 7rem;
+    font-weight: bold;
+    font-size: large;
+    
+}
+.search-history{
+    margin: 2rem 0 0 0;
+    background-color: rgb(77, 66, 66);
+    color: aliceblue;
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+.search-history ul {
+    display: flex;
+    flex-direction: column;
+}
+.search-history ul li {
+    margin: 0.5rem 0;
+}
