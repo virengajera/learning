@@ -19,6 +19,7 @@
     - [Pipe](#pipe)
     - [Duplex Stream](#duplex-stream)
     - [Transform Stream](#transform-stream)
+    - [PassThrough Stream](#passthrough-stream)
     - [Stream Mode](#streams-mode)
 
 # **Getting Started**
@@ -331,6 +332,9 @@ It is similar to Duplex Stream but It reads data and writes back to write intern
 |:--:| 
 | *Transform Stream* |
 
+# **PassThrough Stream*
+
+It is kind of duplex. In this stream data is not changed. It is use to control the flow of data. E.g. When you want send each chunk of data to api and save those chunks to database. In this scenario sending too many data will be not handled by API(may cause DoS Attack) so pipeThrough will control that flow will send data in controlled way. PassThrough will never change the content of data.
 
 # **Streams Mode**
 
