@@ -22,6 +22,11 @@
     - [PassThrough Stream](#passthrough-stream)
     - [Stream Mode](#streams-mode)
 6. [Networking with node.js](#networking)
+    - [TCP vs UDP](#tcp-vs-udp)
+    - [TCP in Node.js](#tcp-in-nodejs)
+    - [UDP in Node.js](#udp-in-nodejs)
+
+
 # **Getting Started**
 
 ## **Execution JS Program**
