@@ -349,6 +349,16 @@ Library Stream search, busboy(this is used by multer as their dependencies) uses
 
 `net` module is the lowest level of networking module. All the http and other are developed on top of net module.
 
+You can also create IPC server (inter process communication) multiple process to communicate with each other. E.g. Your node application can communicate with task manager, database, os system process internally.
+
+
+## **TCP vs UDP**
+
+TCP makes sure that data is received correctly and acknowledget also take places. It gurantees the success delievery of data. If data is lost it re-trasmit data. For e.g you are uploading file then you want each and every piece of data to correctly received.
+
+UPD just kept sending data does not gurantee that successful delivery of data. It does not re-transmit data. For e.g used in video streaming, kind of application.
+
+
 ## **TCP in node.js**
 
 ```
@@ -358,7 +368,28 @@ const net = require('net')
 
 const server = net.createServer((socket)=>{
 
+    // socket is a Duplex stream object
+
 })
 
-server.listen(port,ip_addr,()=>)
+server.listen(port,ip_addr,()=>{})
 ```
+
+```
+// TCP Client
+
+const client = net.createConnection({
+    host: HOST,
+    port:PORT
+},()=>{
+
+    client.write(`Simple message of string`)
+
+})
+```
+
+## **UDP in node.js**
+
+UDP is connectionless it means endpoint does not matter. `dgram` module is used in node.js
+
+Follow codes in [/network/udp/](./networking/udp/)
