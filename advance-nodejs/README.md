@@ -20,7 +20,7 @@
     - [Duplex Stream](#duplex-stream)
     - [Transform Stream](#transform-stream)
     - [Stream Mode](#streams-mode)
-
+6. [Networking with node.js](#networking)
 # **Getting Started**
 
 ## **Execution JS Program**
@@ -340,3 +340,21 @@ Instead of moving data in form of buffer 0s and 1s. You can move data in Object 
 Library Stream search, busboy(this is used by multer as their dependencies) uses stream take a look at source code for learning more about stream
 
 
+# **Networking**
+
+
+`net` module is the lowest level of networking module. All the http and other are developed on top of net module.
+
+## **TCP in node.js**
+
+```
+const net = require('net')
+
+// Creates a TCP server
+
+const server = net.createServer((socket)=>{
+
+})
+
+server.listen(port,ip_addr,()=>)
+```
