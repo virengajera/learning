@@ -21,7 +21,11 @@
     - [Transform Stream](#transform-stream)
     - [PassThrough Stream](#passthrough-stream)
     - [Stream Mode](#streams-mode)
-6. [Networking with node.js](#networking)
+6. [Using Async Iterator with Stream](#async-iterator-with-stream)
+    - [Array](#readbale-stream-from-arrary)
+    - [Generator Function](#readable-from-generator-function)
+    - [File streams](#readable-in-file-read-stream)
+7. [Networking with node.js](#networking)
     - [TCP vs UDP](#tcp-vs-udp)
     - [TCP in Node.js](#tcp-in-nodejs)
     - [UDP in Node.js](#udp-in-nodejs)
@@ -347,6 +351,55 @@ Instead of moving data in form of buffer 0s and 1s. You can move data in Object 
 
 
 Library Stream search, busboy(this is used by multer as their dependencies) uses stream take a look at source code for learning more about stream
+
+# **Async Iterator with Stream**
+
+You can use asyc iterator and generator with Stream. You can use stream with all the objects which are **iterable**
+
+For writable stream it is hard to use async iterator.
+
+
+## **Readbale stream from Arrary**
+```
+let arr = [1,2,3,4]
+
+const rs = Readable.from(arr)
+rs.on('data',()=>{})
+```
+
+## **Readable from Generator Function**
+```
+// here function can also be async function
+
+function * generate(){
+    yield i
+}
+
+
+async run(){
+
+    const rs = Readable.from(generate())
+
+    for await(let chunk of rs){
+        console.log(chunk)
+    }
+
+}
+```
+
+## **Readable in File Read stream**
+```
+async function run(){
+
+    const rs = createReadStream('filepath')
+    rs.setEncoding('utf-8)
+    
+    for await(let chunk of rs){
+        console.log(chunk)
+    }
+}
+```
+
 
 
 # **Networking**
