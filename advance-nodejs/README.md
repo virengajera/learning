@@ -25,6 +25,8 @@
     - [Array](#readbale-stream-from-arrary)
     - [Generator Function](#readable-from-generator-function)
     - [File streams](#readable-in-file-read-stream)
+    - [Transform data with chaining function](#transform-data-with-chaining-funtion)
+    - [Example of All stream with async iterator api](#example-of-stream-with-async-iterator-api)
 7. [Networking with node.js](#networking)
     - [TCP vs UDP](#tcp-vs-udp)
     - [TCP in Node.js](#tcp-in-nodejs)
@@ -400,7 +402,69 @@ async function run(){
 }
 ```
 
+## **Transform data with chaining funtion**
 
+Usecase if you want to transfrom data like map and filter then it is possible. **For stream you have to apply those function to stream object only** because you want to transform data chunks by chunks and as data feeds in.
+
+```
+async function * getRecordsFromDB(){
+    // Gets 100 records from Database or File every time
+    yield results
+}
+
+// data is processed in every chunk instead of whole data
+const rs = Readable.from(getRecordsFromDB())
+
+rs
+ .map(d=>d.uppp)
+ .filter()
+ .map()
+
+```
+
+## **Example of Stream with async iterator api**
+```
+import { pipeline } from 'node:stream/promises'
+import { setTimeout } from 'node:timers/promises'
+
+async function * myCustomReadable() {
+  yield Buffer.from('This is my')
+  await setTimeout(100)
+  yield Buffer.from('custom readable!')
+}
+
+async function * myCustomTransform(stream) {
+  for await(const chunk of stream) {
+    yield chunk.toString().replace(/\s/g, "_")
+  }
+}
+
+async function * myCustomWritable(stream) {
+  for await(const chunk of stream) {
+    console.log('[writable]', chunk)
+  }
+}
+
+async function * myCustomDuplex(stream) {
+  let bytesRead = 0;
+  const wholeString = []
+  for await(const chunk of stream) {
+    console.log('[duplex writable]', chunk)
+    bytesRead+= chunk.length
+    wholeString.push(chunk)
+  }
+
+  yield `wholeString: ${wholeString.join()}`
+  yield `bytesRead: ${bytesRead}`
+}
+
+await pipeline(
+  myCustomReadable,
+  myCustomTransform,
+  myCustomDuplex,
+  myCustomWritable
+)
+```
 
 # **Networking**
 
