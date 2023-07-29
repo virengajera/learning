@@ -210,7 +210,7 @@ Will not work if you do this way : historyList.push("Hello")
 Will work : sethistoryList([...historyList,searchName])
 ```
 
-**useState** function reference can be also passed as props and can be invoked in child component through pros.sethistoryList().
+**useState** function reference can be also passed as props and can be invoked in child component through props.sethistoryList().
 
 
 
@@ -244,6 +244,17 @@ History Values
       }
     </ul>
 </div>
+
+```
+
+correct ways to useState to update values
+```
+For numbers : setcount(prevcount => prevcount + 1)
+
+Original object : {count:0, theme:blue}
+For Object to increment only count key : setObj(prevstate => return {...prevstate, count: prevstate.count + 1 } )
+
+Similar also applies for array
 
 ```
 
