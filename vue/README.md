@@ -1859,3 +1859,33 @@ setup(){
 
 }
 ```
+
+## Debounce
+```
+<template>
+    <input type="text" @keypress="keup">
+</template>
+
+<script setup>
+import {ref} from "vue"
+
+function debounce(cb,delay=1000){
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+            cb(...args)
+        }, delay);
+    } 
+}
+
+const con = debounce(e=>{
+    console.log("eee",e.target.value)
+})
+function keup(e){
+    con(e)
+
+}
+</script>
+
+```
